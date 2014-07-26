@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+
+
+</div>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Forex Market</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript">
+
+function getTimes(numTimes, interval) {
+ 
+    var ms = (new Date(2014, 07, 28)).getTime();
+    var times = [];
+    var startDate = new Date(ms);
+    
+    for (var i = 1; i< numTimes; i++)
+    {
+        ms += interval;
+        var nextTime = (new Date()).setTime(ms);
+        var nextDate = new Date(nextTime);
+        times.push(nextDate.getHours() + ":" + pad(nextDate.getMinutes(), 2));
+    }
+    
+    return times;
+    
+}
+
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
+
+var interval = 15*60*1000
+var data = [95.45, 95.56, 99.85, 95.90, 96.10, 96.45];
+var timeCategories = getTimes(data.length, interval); 
+
+$(function () {
+    var chart;
+    $(document).ready(function() {
+
+        chart = new Highcharts.Chart({
+        	
+          exporting: {
+        		enabled: false
+        	},
+        	
+        	credits: {
+                	enabled: false
+                	},
+            xAxis: {
+                categories: ['July 28', 'July 29', 'July 30', 'July 31', 'Aug 1', 'Aug 2'
+                    ]
+            },
+            chart: {
+                renderTo: 'container',
+                zoomType: 'x',
+                spacingRight: 20
+            },
+            title: {
+                text: 'Forex Market',
+                style: {
+            	fontSize: '25px',
+                fontWeight: 'bold',
+                color: '#2361a1'
+            },
+            },
+            xAxis: {
+                categories: timeCategories,
+                title: {
+                    text: null
+                },
+                startOnTick: false
+            },
+            yAxis: {
+                title: {
+                    text: 'NRs'
+                },
+                startOnTick: false,
+                showFirstLabel: true
+            },
+            
+           tooltip: {
+            	shared: true,
+            	crosshairs: [{
+            		color: 'green',
+            		width: 2,
+            	
+            	},true,]
+            },
+            
+     legend: {
+                enabled: false	
+            },
+            
+            series: [{
+                type: 'line',
+                name: 'NEPSE Index',
+                data: [95.45, 95.56, 99.85, 95.90, 96.10, 96.45]
+            }]
+        });
+        
+               $( "#menu1" )
+  .change(function () {
+    var str = $(this).val();
+
+    changeSeries(str);
+  })
+  .change();
+
+  function changeSeries(str){
+    if (str == "US$"){
+        chart.series[0].update({
+                    
+                name: 'time series',
+                data: [95.45, 95.56, 99.85, 95.90, 96.10, 96.45]
+           
+                });
+    }
+    else if (str == "British £"){
+        chart.series[0].update({
+                    
+                name: 'time series',
+                data: [150.2, 150.80, 150.78, 150.87, 150.50, 151.22]
+           
+                });
+    }
+    else if (str == "Euro"){
+        chart.series[0].update({
+                    
+                name: 'time series',
+                data: [103.25, 103.45, 103.78, 104.05, 104.56, 104.89]
+           
+                });
+    }
+
+    else if (str == "Japanese ¥ "){
+        chart.series[0].update({
+                    
+                name: 'time series',
+                data: [9.47, 9.87, 9.97, 9.76, 9.67, 9.45]
+           
+                });
+   
+ }
+
+    
+
+ 
+    
+    
+     else{
+        chart.series[0].update({
+                    
+                name: 'time series',
+                data: [9.47, 9.87, 9.97, 9.76, 9.67, 9.45]
+           
+                });
+    }
+  }
+    });
+    
+});
+	</script>
+	</head>
+	<body>
+		
+<div id="big-cotainer" style="width: 720px; height: 320px; border: 1px solid;">	
+<div id="select-menu" style="height: 20px; width: 150px; float: left">	
+				
+<select name ="menu1" id="menu1">
+<option value="US$">NRs Vs US$</option>
+<option value="British £">NRs Vs British £</option>
+<option value="Euro">NRs Vs Euro</option>
+<option value="Japanese ¥">NRs Vs Japanese ¥</option>
+
+</select>
+
+</div>
+<div id="text-container" style="width: 200px; height: 320px; float: right; border-left: 1px solid;">
+    <div class="content1">
+    <h1>NEPSE up by 45 points</h1>
+	<p> Keffiyeh tattooed Pinterest viral. Roof party trust fund selvage narwhal ennui PBR pork belly, blog single-origin coffee XOXO bitters kitsch biodiesel bespoke literally. Scenester blog banh mi plaid Portland seitan. 
+	</p>
+  
+</div>
+</div>
+
+
+		<div id="indexSelectRange" class="btn-group pull-right">
+
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 500px; height: 300px; float: left; border-right-width: 0px;"> </div>
+<div id="second" style="width: 300px; height: 400px; margin:0"> </div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() { // this runs as soon as the page is ready (DOM is loaded)
+   $("second") // selecting "div" (you can also select the element by its id or class like in css )
+   .load("stock.html") // load in the file specified
+  });
+  
+  
+</script>
+
+	</body>
+</html>
+
